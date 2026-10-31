@@ -126,4 +126,29 @@ public class UsuarioRepository {
 
         return null;
     }
+
+    
+    public boolean actualizarUsuario(Usuario usuario) throws SQLException {
+
+        String sql = """
+                UPDATE usuarios
+                SET nombre_completo = ?,
+                    edad = ?,
+                    sexo = ?,
+                    estatura = ?
+                WHERE id_usuario = ?
+                """;
+
+        try (Connection conexion = ConexionDB.getConnection();
+            PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, usuario.getNombreCompleto());
+            ps.setInt(2, usuario.getEdad());
+            ps.setString(3, usuario.getSexo());
+            ps.setDouble(4, usuario.getEstatura());
+            ps.setInt(5, usuario.getIdUsuario());
+
+            return ps.executeUpdate() > 0;
+        }
+    }
 }

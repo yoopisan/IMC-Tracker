@@ -176,6 +176,9 @@
             <a href="<%= request.getContextPath() %>/dashboard"
                class="btn secondary">Volver al inicio</a>
 
+            <a href="<%= request.getContextPath() %>/editar-perfil"
+                class="btn primary">Editar perfil</a>
+
             <a href="<%= request.getContextPath() %>/logout"
                class="btn primary">Cerrar sesión</a>
         </div>

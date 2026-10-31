@@ -18,7 +18,8 @@ import java.io.IOException;
     "/calcular",
     "/resultado",
     "/historial",
-    "/perfil"
+    "/perfil",
+    "/editar-perfil"
 })
 public class AutenticacionFilter implements Filter {
 
