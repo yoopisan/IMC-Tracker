@@ -32,7 +32,7 @@ public class DashboardServlet extends HttpServlet {
 
         request.setAttribute("nombreUsuario", nombreUsuario);
 
-        request.getRequestDispatcher("/dashboard.jsp")
+        request.getRequestDispatcher("/WEB-INF/views/dashboard.jsp")
                 .forward(request, response);
     }
 }

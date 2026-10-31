@@ -62,16 +62,18 @@ public class LoginServlet extends HttpServlet {
                 return;
             }
 
-            // Crear una sesión nueva después de validar las credenciales.
+            HttpSession sesionAnterior = request.getSession(false);
+
+            if (sesionAnterior != null) {
+                sesionAnterior.invalidate();
+            }
+
             HttpSession sesion = request.getSession(true);
 
-            // Evitar reutilizar una sesión anterior.
             sesion.setAttribute("usuarioId", usuario.getIdUsuario());
             sesion.setAttribute("nombreUsuario", usuario.getNombreUsuario());
-
-            // Cerrar la sesión después de 30 minutos de inactividad.
             sesion.setMaxInactiveInterval(30 * 60);
-
+            
             response.sendRedirect(
                     request.getContextPath() + "/dashboard"
             );

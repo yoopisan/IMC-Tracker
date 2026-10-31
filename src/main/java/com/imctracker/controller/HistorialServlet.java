@@ -50,7 +50,7 @@ public class HistorialServlet extends HttpServlet {
             // Enviar los resultados a la vista.
             request.setAttribute("mediciones", mediciones);
 
-            request.getRequestDispatcher("/historial.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/historial.jsp")
                     .forward(request, response);
 
         } catch (SQLException e) {

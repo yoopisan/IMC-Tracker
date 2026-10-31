@@ -49,7 +49,7 @@ public class PerfilServlet extends HttpServlet {
             }
 
             request.setAttribute("usuario", usuario);
-            request.getRequestDispatcher("/perfil.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/perfil.jsp")
                     .forward(request, response);
 
         } catch (SQLException e) {

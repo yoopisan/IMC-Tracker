@@ -26,7 +26,7 @@ public class IMCServlet extends HttpServlet {
                          HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.getRequestDispatcher("/calcular.jsp")
+        request.getRequestDispatcher("/WEB-INF/views/calcular.jsp")
                 .forward(request, response);
     }
 
@@ -60,7 +60,7 @@ public class IMCServlet extends HttpServlet {
                 request.setAttribute("error",
                         "Debes ingresar tu peso y estatura.");
 
-                request.getRequestDispatcher("/calcular.jsp")
+                request.getRequestDispatcher("/WEB-INF/views/calcular.jsp")
                         .forward(request, response);
                 return;
             }
@@ -76,7 +76,7 @@ public class IMCServlet extends HttpServlet {
                 request.setAttribute("error",
                         "Ingresa un peso entre 20 y 500 kg y una estatura entre 1 y 2.5 metros.");
 
-                request.getRequestDispatcher("/calcular.jsp")
+                request.getRequestDispatcher("/WEB-INF/views/calcular.jsp")
                         .forward(request, response);
                 return;
             }
@@ -99,7 +99,7 @@ public class IMCServlet extends HttpServlet {
 
             request.setAttribute("medicion", medicion);
 
-            request.getRequestDispatcher("/resultado.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/resultado.jsp")
                     .forward(request, response);
 
         } catch (NumberFormatException e) {
@@ -107,7 +107,7 @@ public class IMCServlet extends HttpServlet {
             request.setAttribute("error",
                     "Ingresa valores numéricos válidos.");
 
-            request.getRequestDispatcher("/calcular.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/calcular.jsp")
                     .forward(request, response);
 
         } catch (SQLException e) {
@@ -119,7 +119,7 @@ public class IMCServlet extends HttpServlet {
             request.setAttribute("error",
                     "No fue posible guardar tu medición. Inténtalo nuevamente.");
 
-            request.getRequestDispatcher("/calcular.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/calcular.jsp")
                     .forward(request, response);
         }
     }

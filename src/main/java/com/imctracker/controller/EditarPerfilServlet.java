@@ -50,7 +50,7 @@ public class EditarPerfilServlet extends HttpServlet {
 
             request.setAttribute("usuario", usuario);
 
-            request.getRequestDispatcher("/editar-perfil.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/editar-perfil.jsp")
                     .forward(request, response);
 
         } catch (SQLException e) {
