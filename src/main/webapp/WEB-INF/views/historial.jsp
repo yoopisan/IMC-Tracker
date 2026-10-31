@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.util.Locale" %>
+<%@ page import="com.imctracker.util.HtmlUtil" %>
 
 <%
     List<Medicion> mediciones =
@@ -175,7 +176,7 @@
                             </td>
 
                             <td>
-                                <%= medicion.getClasificacion() %>
+                                <%= HtmlUtil.escapar(medicion.getClasificacion()) %>
                             </td>
                         </tr>
 

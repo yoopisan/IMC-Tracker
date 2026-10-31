@@ -37,7 +37,15 @@ public class RegistroServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String nombreCompleto = request.getParameter("nombreCompleto");
+        
+        if (nombreCompleto != null) {
+                nombreCompleto = nombreCompleto.trim();
+        }
         String nombreUsuario = request.getParameter("nombreUsuario");
+
+        if (nombreUsuario != null) {
+                nombreUsuario = nombreUsuario.trim();
+        }
         String password = request.getParameter("password");
         String edadTexto = request.getParameter("edad");
         String sexo = request.getParameter("sexo");

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.imctracker.util.HtmlUtil" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -105,9 +106,9 @@
 
     <h2>Calcular mi IMC</h2>
 
-    <% if (request.getAttribute("error") != null) { %>
+    <% if (HtmlUtil.escapar((String) request.getAttribute("error")) != null) { %>
         <div class="error">
-            <%= request.getAttribute("error") %>
+            <%= HtmlUtil.escapar((String) request.getAttribute("error")) %>
         </div>
     <% } %>
 

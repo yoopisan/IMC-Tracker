@@ -37,6 +37,10 @@ public class LoginServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String nombreUsuario = request.getParameter("nombreUsuario");
+        
+        if (nombreUsuario != null) {
+            nombreUsuario = nombreUsuario.trim();
+        }
         String password = request.getParameter("password");
 
         if (nombreUsuario == null || password == null
@@ -73,7 +77,7 @@ public class LoginServlet extends HttpServlet {
             sesion.setAttribute("usuarioId", usuario.getIdUsuario());
             sesion.setAttribute("nombreUsuario", usuario.getNombreUsuario());
             sesion.setMaxInactiveInterval(30 * 60);
-            
+
             response.sendRedirect(
                     request.getContextPath() + "/dashboard"
             );

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.imctracker.util.HtmlUtil" %>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -120,7 +121,9 @@
 
     <div class="bienvenida">
         <h2>
-            ¡Bienvenido, <%= request.getAttribute("nombreUsuario") %>!
+            ¡Bienvenido, <%= HtmlUtil.escapar(
+                (String) request.getAttribute("nombreUsuario")
+            ) %>!
         </h2>
 
         <p>

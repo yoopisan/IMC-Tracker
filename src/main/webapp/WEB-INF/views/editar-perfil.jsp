@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.imctracker.model.Usuario" %>
+<%@ page import="com.imctracker.util.HtmlUtil" %>
 
 <%
     Usuario usuario = (Usuario) request.getAttribute("usuario");
@@ -150,7 +151,7 @@
     <div class="card">
 
         <% if (error != null) { %>
-            <div class="error"><%= error %></div>
+            <div class="error"><%= HtmlUtil.escapar(error) %></div>
         <% } %>
 
         <form action="<%= request.getContextPath() %>/editar-perfil"
@@ -162,7 +163,7 @@
                        id="nombreCompleto"
                        name="nombreCompleto"
                        maxlength="120"
-                       value="<%= usuario.getNombreCompleto() %>"
+                       value="<%= HtmlUtil.escapar(usuario.getNombreCompleto()) %>"
                        required>
             </div>
 
