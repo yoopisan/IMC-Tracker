@@ -37,7 +37,7 @@ public class RegistroServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String nombreCompleto = request.getParameter("nombreCompleto");
-        
+
         if (nombreCompleto != null) {
                 nombreCompleto = nombreCompleto.trim();
         }
@@ -45,6 +45,17 @@ public class RegistroServlet extends HttpServlet {
 
         if (nombreUsuario != null) {
                 nombreUsuario = nombreUsuario.trim();
+        }
+        
+        if (!nombreUsuario.matches("^[a-zA-Z0-9._-]{4,20}$")) {
+        request.setAttribute(
+                "error",
+                "El nombre de usuario debe tener entre 4 y 20 caracteres. Solo se permiten letras, números, puntos, guiones y guiones bajos."
+        );
+
+        request.getRequestDispatcher("/registro.jsp")
+                .forward(request, response);
+        return;
         }
         String password = request.getParameter("password");
         String edadTexto = request.getParameter("edad");
@@ -87,11 +98,20 @@ public class RegistroServlet extends HttpServlet {
             }
 
             // Validación de contraseña
-            if (password.length() < 8 || password.length() > 72) {
-                mostrarError(request, response,
-                        "La contraseña debe tener entre 8 y 72 caracteres.");
+            int longitudPassword = password.getBytes(
+                java.nio.charset.StandardCharsets.UTF_8
+                ).length;
+
+                if (longitudPassword < 8 || longitudPassword > 72) {
+                request.setAttribute(
+                        "error",
+                        "La contraseña debe tener al menos 8 bytes y no superar los 72 bytes."
+                );
+
+                request.getRequestDispatcher("/registro.jsp")
+                        .forward(request, response);
                 return;
-            }
+}
 
             // Validación de sexo
             if (!sexo.equals("Masculino")
