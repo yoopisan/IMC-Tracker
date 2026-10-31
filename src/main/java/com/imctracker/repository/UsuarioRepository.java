@@ -49,4 +49,81 @@ public class UsuarioRepository {
             return ps.executeUpdate() == 1;
         }
     }
+
+    public Usuario buscarPorNombreUsuario(String nombreUsuario) throws SQLException {
+        String sql = """
+                SELECT id_usuario, nombre_completo, nombre_usuario,
+                    password_hash, edad, sexo, estatura
+                FROM usuarios
+                WHERE nombre_usuario = ?
+                """;
+
+        try (Connection conexion = ConexionDB.getConnection();
+            PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, nombreUsuario);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Usuario usuario = new Usuario();
+
+                    usuario.setIdUsuario(rs.getInt("id_usuario"));
+                    usuario.setNombreCompleto(rs.getString("nombre_completo"));
+                    usuario.setNombreUsuario(rs.getString("nombre_usuario"));
+                    usuario.setPasswordHash(rs.getString("password_hash"));
+                    usuario.setEdad(rs.getInt("edad"));
+                    usuario.setSexo(rs.getString("sexo"));
+                    usuario.setEstatura(rs.getDouble("estatura"));
+
+                    return usuario;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    
+    public Usuario buscarPorId(int idUsuario) throws SQLException {
+
+        String sql = """
+                SELECT id_usuario, nombre_completo, nombre_usuario,
+                    password_hash, edad, sexo, estatura
+                FROM usuarios
+                WHERE id_usuario = ?
+                """;
+
+        try (Connection conexion = ConexionDB.getConnection();
+            PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setInt(1, idUsuario);
+
+            try (ResultSet rs = ps.executeQuery()) {
+
+                if (rs.next()) {
+                    Usuario usuario = new Usuario();
+
+                    usuario.setIdUsuario(rs.getInt("id_usuario"));
+                    usuario.setNombreCompleto(
+                            rs.getString("nombre_completo")
+                    );
+                    usuario.setNombreUsuario(
+                            rs.getString("nombre_usuario")
+                    );
+                    usuario.setPasswordHash(
+                            rs.getString("password_hash")
+                    );
+                    usuario.setEdad(rs.getInt("edad"));
+                    usuario.setSexo(rs.getString("sexo"));
+                    usuario.setEstatura(
+                            rs.getDouble("estatura")
+                    );
+
+                    return usuario;
+                }
+            }
+        }
+
+        return null;
+    }
 }
